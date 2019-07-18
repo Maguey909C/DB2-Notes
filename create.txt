@@ -1,7 +1,8 @@
 #Author: Chase Renick
 #Date: 7/18/2019
-#Purpose: Resizing the table names
+#Purpose: Commands for Vertica creating, manipulating, granting access to tables
 
+#Creating a table
 CREATE TABLE schemaName.TableName (
 user_id varchar(15),
 x1 decimal(25,15),
@@ -18,3 +19,39 @@ role integer,
 dds integer,
 perday decimal(25,15)
 )
+
+#Granting another user acess to a particular table
+GRANT SELECT ON TABLE
+dsl.table_name
+To ONOFREE;
+
+#Deleting the Contents of Table but keeping table
+DELETE 
+FROM dsl.COMBINED_PCA_PILS
+
+#Dropping a table
+DROP TABLE dsl.TEST
+
+#Casting a particular column as a numeric value
+SELECT p.*, cast(-1.03687294015836 as numeric (25,13))
+FROM dsl.table_name as p
+
+#Examining the Loader Reject Table
+SELECT *
+FROM dsl.username_loader_rejects
+
+#Updating a table
+UPDATE dsl.tablename
+SET firstcol = lp.secondcol
+FROM dsl.secondtable as st
+WHERE firstcol = cAST(st.firstcol as varchar(10))
+
+#Another update example
+UPDATE dsl.C_REASON_LOOKUP 
+SET COLNAME = 'Whatever'
+WHERE COLNAME = 'something'
+
+#Checking authorization of tables
+select *
+from syscat.tabauth
+where tabname like '%ZCTAUDT';
