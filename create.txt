@@ -23,7 +23,7 @@ perday decimal(25,15)
 #Granting another user acess to a particular table
 GRANT SELECT ON TABLE
 dsl.table_name
-To ONOFREE;
+To Someuser;
 
 #Deleting the Contents of Table but keeping table
 DELETE 
